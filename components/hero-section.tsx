@@ -39,11 +39,11 @@ export default function HeroSection() {
             className="space-y-4" // Increased space between elements
           >
             <h1 className="text-2xl md:text-3xl font-medium">
-            Hi there! I'm Chisom Elijah.
+              Hi there! I'm Chisom Elijah.
             </h1>
             <p className="text-zinc-600 dark:text-zinc-400 text-base md:text-lg max-w-2xl mt-5">
-              I'm a Product Developer with 5 years of experience building digital products people genuinely enjoy using. My passion lies in user-centered design, 
-              ensuring intuitive functionality meets compelling visual aesthetics. Welcome to my corner of the internet! ✨
+              I'm a Product Developer with 5 years of experience building digital products people genuinely enjoy using. My passion lies in user-centered design,
+              ensuring intuitive functionality meets compelling visual aesthetics. <br /> Welcome to my corner of the internet! ✨
             </p>
           </motion.div>
 
