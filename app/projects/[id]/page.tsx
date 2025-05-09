@@ -2,14 +2,14 @@
 
 import { useEffect, useState, useContext } from "react"
 import { useParams, useRouter } from "next/navigation"
-import Image from "next/image"
 import { ArrowLeft, ArrowRight, ExternalLink, Github } from "lucide-react"
 import { motion } from "framer-motion"
-import Link from "next/link"
 import type { ProjectDetail } from "@/types/project"
-import ProjectGallery from "./project-gallery"
 import { useTheme } from "next-themes"
 import { CursorContext } from "@/context/cursor-context"
+import Link from "next/link"
+import ProjectGallery from "./project-gallery"
+import Image from "next/image"
 
 export default function ProjectDetailPage() {
   const params = useParams()
@@ -20,7 +20,6 @@ export default function ProjectDetailPage() {
   const { setCursorActive } = useContext(CursorContext)
 
   useEffect(() => {
-    // In a real app, this would be an API call
     const getProjectData = () => {
       const projectData: Record<string, ProjectDetail> = {
         huepick: {
@@ -290,10 +289,9 @@ export default function ProjectDetailPage() {
                         <span
                           key={index}
                           className={`text-xs px-2 py-1 rounded-full 
-                            ${
-                              theme !== "dark"
-                                ? "bg-white ring-1 ring-zinc-200 text-zinc-700"
-                                : "bg-zinc-800 text-zinc-300"
+                            ${theme !== "dark"
+                              ? "bg-white ring-1 ring-zinc-200 text-zinc-700"
+                              : "bg-zinc-800 text-zinc-300"
                             }`}
                         >
                           {tech}

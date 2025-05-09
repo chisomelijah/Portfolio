@@ -59,11 +59,10 @@ export default function Navbar() {
                 <a
                   href={`#${item.id}`}
                   onClick={(e) => smoothScroll(e, item.id)}
-                  className={`relative px-5 py-2 rounded-full text-sm transition-colors ${
-                    activeSection === item.id
-                      ? "text-zinc-900 dark:text-white"
-                      : "text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white"
-                  }`}
+                  className={`relative px-5 py-2 rounded-full text-sm font-regular transition-colors ${activeSection === item.id
+                    ? "text-zinc-900 dark:text-white"
+                    : "text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white"
+                    }`}
                 >
                   {activeSection === item.id && (
                     <motion.span

@@ -41,9 +41,9 @@ export default function HeroSection() {
             <h1 className="text-2xl md:text-3xl font-medium">
               Hey there — I’m Chisom.
             </h1>
-            <p className="text-zinc-600 dark:text-zinc-400 text-base md:text-lg max-w-2xl mt-4">
-              I'm a Product Developer with 5 years of experience—designing, building, and above all, creating digital products people genuinely enjoy using.
-              To me, that's what bridging design and function is all about.
+            <p className="text-zinc-600 dark:text-zinc-400 text-base md:text-lg max-w-2xl mt-5">
+              A Product Developer with 5 years of experience—designing, building, and above all, creating digital products people genuinely enjoy using.
+              I’m passionate about creating user-centered designs that are not only functional but also visually appealing.
             </p>
           </motion.div>
 
@@ -55,7 +55,7 @@ export default function HeroSection() {
             transition={{ duration: 0.5, delay: 0.6 }}
             className="flex flex-wrap gap-2 pt-4"
           >
-            {["UI/UX Design", "Web Development", "UX Writing", "Design Systems"].map((tag, index) => (
+            {["Product Design", "UI/UX Design", "Interaction Design", "Web Design"].map((tag, index) => (
               <motion.span
                 key={tag}
                 initial={{ opacity: 0, y: 10 }}
