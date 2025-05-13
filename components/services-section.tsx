@@ -19,7 +19,7 @@ export default function ServicesSection() {
       title: "Frontend Development",
       icon: <Code className="w-5 h-5" />,
       description: "Building responsive and interactive web applications using modern frameworks.",
-      useCases: ["React Applications", "Next.js Sites", "Interactive Dashboards"],
+      useCases: ["Web Applications", "E-commerce sites", "Interactive Dashboards"],
     },
     {
       title: "Product Strategy",

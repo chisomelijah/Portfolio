@@ -22,7 +22,7 @@ export default function SkillsSection() {
     {
       name: "Tools",
       icon: <Figma className="w-5 h-5" />,
-      skills: ["Figma", "Adobe XD", "Sketch", "VS Code", "Git", "Storybook", "Vercel"],
+      skills: ["Figma", "Framer", "Webflow", "VS Code", "Git", "Storybook", "Vercel"],
     },
     {
       name: "Soft Skills",

@@ -1,4 +1,4 @@
-export type ProjectTag = "UI/UX" | "Web App" | "React" | "Design" | "Color Tool" | "Next.js"
+export type ProjectTag = "React" | "Next.js" | "UI/UX" | "Web App"
 
 export interface ProjectDetail {
   id: string

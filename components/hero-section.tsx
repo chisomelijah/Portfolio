@@ -42,8 +42,7 @@ export default function HeroSection() {
               Chisom Elijah | Product Developer
             </h1>
             <p className="text-zinc-600 dark:text-zinc-400 text-base md:text-lg max-w-2xl mt-5">
-              I'm a Product Developer with 5 years of experience building digital products people genuinely enjoy using. My passion lies in user-centered design,
-              ensuring intuitive functionality meets compelling visual aesthetics. Welcome to my corner of the internet! ✨
+              Product Developer with 5 years' experience creating user-centered digital products that blend intuitive functionality with engaging design. Welcome to my corner of the internet!
             </p>
           </motion.div>
 
