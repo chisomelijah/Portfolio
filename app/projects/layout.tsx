@@ -3,7 +3,7 @@ import type { Metadata } from "next"
 
 export const metadata: Metadata = {
   title: "Projects | Chisom Elijah",
-  description: "Detailed view of design and development projects by Chisom Elijah",
+  description: "Detailed view of projects by Chisom Elijah",
 }
 
 export default function ProjectsLayout({

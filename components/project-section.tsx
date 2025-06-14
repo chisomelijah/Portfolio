@@ -1,38 +1,30 @@
 "use client"
 
 import { useRef, useContext } from "react"
-import Image from "next/image"
-import { ArrowUpRight } from "lucide-react"
 import { motion, useInView } from "framer-motion"
 import Link from "next/link"
 import type { ProjectTag } from "@/types/project"
-import { CursorContext } from "@/context/cursor-context"
-import { useTheme } from "next-themes"
 
 interface Project {
   id: string
   title: string
   image: string
-  category: string
   url: string
   tags: ProjectTag[]
   description: string
 }
 
 export default function ProjectSection() {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, amount: 0.2 })
-  const { setCursorActive } = useContext(CursorContext)
-  const { theme } = useTheme()
+  const ref = useRef<HTMLDivElement>(null)
+  const isInView = useInView(ref as React.RefObject<Element>, { once: true, amount: 0.2 })
 
   const projects: Project[] = [
     {
       id: "huepick",
       title: "HuePick",
       image: "/images/huepick-new.png",
-      category: "Color Tool",
       url: "https://hue-pick.vercel.app/",
-      tags: ["Design", "React", "Color Tool"],
+      tags: ["UI/UX", "React", "SaaS", "Web App"],
       description:
         "Generate beautiful color palettes from any image — instantly. Perfect for designers and developers.",
     },
@@ -40,9 +32,8 @@ export default function ProjectSection() {
       id: "tabloom",
       title: "Tabloom",
       image: "/images/tabloom-new.png",
-      category: "Web App",
       url: "https://tabloom.vercel.app/",
-      tags: ["UI/UX", "Web App", "React"],
+      tags: ["UI/UX", "Web App", "React", 'SaaS'],
       description:
         "Turn your small daily actions into a garden of growth. Track habits with a beautiful visual metaphor.",
     },
@@ -50,10 +41,18 @@ export default function ProjectSection() {
       id: "shades",
       title: "Shades",
       image: "/images/shades-new.png",
-      category: "Color Tool",
       url: "https://shade-maker.vercel.app/",
-      tags: ["Design", "React", "Color Tool"],
+      tags: ["SaaS", "React", "Web App", "UI/UX"],
       description: "Effortless shade generation and perfect color harmony tool for designers and developers.",
+    },
+    {
+      id: "rslash",
+      title: "R/Slash",
+      image: "/images/rslash-preview.png",
+      url: "https://r-slash.vercel.app/",
+      tags: ["Reddit", "Web App", "Next.js", "SaaS"],
+      description:
+        "Track keywords across Reddit in real-time. Get alerts when specific topics are mentioned in your selected subreddits.",
     },
   ]
 
@@ -75,74 +74,85 @@ export default function ProjectSection() {
     show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
   }
 
+
+
   return (
     <div ref={ref} className="py-16 relative">
       <div className="mb-12">
-        <motion.h2
-          className="text-3xl font-bold"
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.5 }}
-        >
-          Selected Work
-        </motion.h2>
+        <div className="text-3xl font-bold text-center">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.5 }}
+          >
+            Selected Work
+          </motion.h2>
+        </div>
+        <div className="mt-3 text-center text-zinc-500 dark:text-zinc-400 max-w-xl mx-auto">
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            A selection of projects showcasing my skills in design, development, and product thinking.
+          </motion.p>
+        </div>
       </div>
 
-      <motion.div
-        className="grid grid-cols-1 md:grid-cols-2 gap-8"
-        variants={container}
-        initial="hidden"
-        animate={isInView ? "show" : "hidden"}
-      >
-        {filteredProjects.map((project) => (
-          <motion.div key={project.id} variants={item} className="group">
-            <Link href={`/projects/${project.id}`} scroll={false}>
-              <div
-                className={`
-                  relative overflow-hidden rounded-lg aspect-[16/10] mb-4 cursor-none
-                  ${theme !== "dark" ? "ring-1 ring-zinc-200 shadow-sm shadow-zinc-100/80 bg-zinc-50" : "bg-zinc-900"}
-                `}
-                onMouseEnter={() => setCursorActive(true)}
-                onMouseLeave={() => setCursorActive(false)}
-              >
-                {/* Light theme overlay to enhance contrast */}
-                {theme !== "dark" && (
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent opacity-70 z-10"></div>
-                )}
-
-                {/* Hover effect overlay */}
-                <div className="absolute inset-0 backdrop-blur-[2px] bg-black/5 dark:bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"></div>
-
-                <Image
-                  src={project.image || "/placeholder.svg"}
-                  alt={project.title}
-                  fill
-                  className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                />
+      <div className="space-y-6 max-w-5xl mx-auto">
+        {filteredProjects.map((project, idx) => (
+          <motion.div
+            key={project.id}
+            variants={item}
+          >
+            <div className="group flex flex-col md:flex-row items-start md:items-stretch gap-4 md:gap-8 rounded-2xl border border-zinc-100 dark:border-zinc-800 border-[0.5px] px-6 md:px-10 py-10 transition-all duration-300
+               dark:bg-transparent dark:bg-zinc-900
+               hover:bg-zinc-100
+               dark:hover:shadow-md dark:hover:-translate-y-1 dark:hover:bg-zinc-800/60">
+              {/* Number */}
+              <div className="flex flex-row md:flex-col items-center justify-start min-w-0 md:min-w-[3.5rem] mr-0 md:mr-2 pt-1 mb-2 md:mb-0">
+                <span className="font-extrabold text-3xl md:text-4xl text-zinc-900 dark:text-zinc-100 w-12 text-left md:text-right tabular-nums select-none">
+                  {(idx + 1).toString().padStart(2, "0")}
+                </span>
               </div>
-              <div className="flex justify-between items-center">
-                <div>
-                  <h3 className="text-lg font-medium">{project.title}</h3>
-                  <p className="text-sm text-zinc-600 dark:text-zinc-400">{project.category}</p>
-                </div>
-                <div className="opacity-0 transform translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
-                  <ArrowUpRight className="w-5 h-5" />
-                </div>
-              </div>
-              <div className="mt-3 flex flex-wrap gap-2">
-                {project.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="text-xs px-2 py-1 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400"
-                  >
-                    {tag}
+              {/* Main Content */}
+              <div className="flex-1 min-w-0 flex flex-col justify-center">
+                <div className="flex flex-row items-center gap-2 flex-wrap">
+                  <span className="font-bold text-xl md:text-2xl text-zinc-900 dark:text-white">
+                    {project.title}
                   </span>
-                ))}
+                  <span className="text-xl text-zinc-400 font-bold"></span>
+                  <span className="font-bold text-xl md:text-2xl text-zinc-500 dark:text-zinc-300">
+                  </span>
+                </div>
+                <div className="mt-2 text-sm md:text-base text-zinc-600 dark:text-zinc-300 font-normal">
+                  {project.description}
+                </div>
               </div>
-            </Link>
+              {/* Tags & Button */}
+              <div className="flex flex-col items-start md:items-end min-w-0 md:min-w-[140px] ml-0 md:ml-4 mt-4 md:mt-0 w-full md:w-auto">
+                <div className="flex flex-wrap gap-2 mb-2">
+                  {project.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="text-sm px-4 py-1 rounded-full bg-zinc-100 text-zinc-700 border border-zinc-200 dark:bg-zinc-800 dark:text-zinc-200 dark:border-zinc-700 transition-colors duration-200 font-medium"
+                    >
+                      <motion.span whileHover={{ scale: 1.08 }}>{tag}</motion.span>
+                    </span>
+                  ))}
+                </div>
+                <Link
+                  href={`/projects/${project.id}`}
+                  className="inline-block mt-4 px-4 py-1.5 rounded-lg text-sm font-semibold bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900 shadow-sm hover:bg-zinc-700 dark:hover:bg-white/90 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-zinc-400 focus:ring-offset-2 focus:ring-offset-zinc-100 dark:focus:ring-zinc-700 dark:focus:ring-offset-zinc-900"
+                  tabIndex={0}
+                >
+                  View Project
+                </Link>
+              </div>
+            </div>
           </motion.div>
         ))}
-      </motion.div>
+      </div>
     </div>
   )
 }

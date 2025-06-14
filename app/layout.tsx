@@ -4,8 +4,6 @@ import { Manrope } from "next/font/google"
 import { GeistSans } from "geist/font/sans"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
-import { CursorProvider } from "@/context/cursor-context"
-import GlobalCursor from "@/components/global-cursor"
 
 const manrope = Manrope({
   subsets: ["latin"],
@@ -15,8 +13,7 @@ const manrope = Manrope({
 
 export const metadata: Metadata = {
   title: "Chisom Elijah - Product Developer",
-  description: "Product developer specializing in UI/UX design and frontend development",
-    generator: 'v0.dev'
+  description: "Product developer specializing in UI/UX design and Frontend development",
 }
 
 export default function RootLayout({
@@ -28,10 +25,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`${manrope.variable} ${GeistSans.variable} font-sans`}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
-          <CursorProvider>
-            {children}
-            <GlobalCursor />
-          </CursorProvider>
+          {children}
         </ThemeProvider>
       </body>
     </html>

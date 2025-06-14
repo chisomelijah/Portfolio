@@ -10,7 +10,7 @@ interface CursorContextType {
 
 export const CursorContext = createContext<CursorContextType>({
   cursorActive: false,
-  setCursorActive: () => {},
+  setCursorActive: () => { },
   cursorPosition: { x: 0, y: 0 },
 })
 

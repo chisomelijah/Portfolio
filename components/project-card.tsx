@@ -31,10 +31,9 @@ export default function ProjectCard({ project, index }: ProjectProps) {
     <motion.div
       ref={ref}
       className={`relative overflow-hidden rounded-lg group transition-all duration-300 h-[380px] block
-        ${
-          theme !== "dark"
-            ? "bg-zinc-50 hover:bg-white border border-zinc-100 shadow-sm"
-            : "bg-zinc-800 hover:bg-zinc-700"
+        ${theme !== "dark"
+          ? "bg-zinc-50 hover:bg-white border border-zinc-100 shadow-sm"
+          : "bg-zinc-800 hover:bg-zinc-700"
         }`}
       onMouseEnter={() => {
         setIsHovered(true)
@@ -60,17 +59,15 @@ export default function ProjectCard({ project, index }: ProjectProps) {
           src={project.image || "/placeholder.svg"}
           alt={project.title}
           fill
-          className={`w-full h-full object-cover object-center transition-all duration-500 ${
-            isHovered ? "scale-105 brightness-[0.4]" : theme !== "dark" ? "brightness-[0.85]" : "brightness-[0.7]"
-          }`}
+          className={`w-full h-full object-cover object-center transition-all duration-500 ${isHovered ? "scale-105 brightness-[0.4]" : theme !== "dark" ? "brightness-[0.85]" : "brightness-[0.7]"
+            }`}
         />
       </div>
 
       {/* Project Info - Only visible on hover */}
       <div
-        className={`absolute inset-0 p-5 flex flex-col justify-end transition-all duration-500 ease-in-out ${
-          isHovered ? "opacity-100" : "opacity-0"
-        }`}
+        className={`absolute inset-0 p-5 flex flex-col justify-end transition-all duration-500 ease-in-out ${isHovered ? "opacity-100" : "opacity-0"
+          }`}
       >
         <motion.div
           className="bg-white/90 dark:bg-black/90 backdrop-blur-sm text-zinc-900 dark:text-white p-4 rounded-lg"

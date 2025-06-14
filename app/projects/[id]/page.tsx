@@ -1,15 +1,12 @@
 "use client"
 
-import { useEffect, useState, useContext } from "react"
+import { useEffect, useState } from "react"
 import { useParams, useRouter } from "next/navigation"
 import { ArrowLeft, ArrowRight, ExternalLink, Github } from "lucide-react"
 import { motion } from "framer-motion"
 import type { ProjectDetail } from "@/types/project"
 import { useTheme } from "next-themes"
-import { CursorContext } from "@/context/cursor-context"
 import Link from "next/link"
-import ProjectGallery from "./project-gallery"
-import Image from "next/image"
 
 export default function ProjectDetailPage() {
   const params = useParams()
@@ -17,7 +14,6 @@ export default function ProjectDetailPage() {
   const [project, setProject] = useState<ProjectDetail | null>(null)
   const [loading, setLoading] = useState(true)
   const { theme } = useTheme()
-  const { setCursorActive } = useContext(CursorContext)
 
   useEffect(() => {
     const getProjectData = () => {
@@ -33,8 +29,8 @@ export default function ProjectDetailPage() {
           gallery: ["/images/huepick-new.png"],
           url: "https://hue-pick.vercel.app/",
           sourceUrl: "https://github.com/username/huepick",
-          tags: ["Design", "Color Tool", "React"],
-          technologies: ["React", "Next.js", "TailwindCSS", "Color.js", "Framer Motion"],
+          tags: ["Next.js", "SaaS", "Web App"],
+          technologies: ["React", "Next.js", "TailwindCSS", "Framer Motion"],
           features: [
             "Upload images to extract color palettes",
             "Copy colors in HEX or RGB format",
@@ -105,7 +101,7 @@ export default function ProjectDetailPage() {
           gallery: ["/images/shades-new.png"],
           url: "https://shade-maker.vercel.app/",
           sourceUrl: "https://github.com/username/shades",
-          tags: ["Design", "Color Tool", "React"],
+          tags: ["UI/UX", "SaaS", "React"],
           technologies: ["React", "TailwindCSS", "Color Theory Algorithms", "Clipboard API"],
           features: [
             "Generate color variations from a base color",
@@ -129,6 +125,42 @@ export default function ProjectDetailPage() {
           role: "Frontend Developer & UI/UX Designer",
           nextProject: "huepick",
           prevProject: "tabloom",
+        },
+        rslash: {
+          id: "rslash",
+          title: "R/Slash",
+          subtitle: "Reddit Keyword Tracker",
+          description: "Track keywords across Reddit in real-time. Get alerts when specific topics are mentioned in your selected subreddits.",
+          fullDescription:
+            "R/Slash is a real-time Reddit monitoring tool that empowers users to track keywords and topics across multiple subreddits. Receive instant notifications when your chosen keywords are mentioned, helping you stay on top of trends, discussions, and opportunities. Ideal for marketers, researchers, and power users who want to monitor Reddit conversations efficiently.",
+          image: "/images/rslash-preview.png",
+          gallery: ["/images/rslash-preview.png"],
+          url: "https://r-slash.vercel.app/",
+          sourceUrl: "https://github.com/username/rslash",
+          tags: ["Reddit", "Web App", "Next.js", "SaaS"],
+          technologies: ["Next.js", "React", "TailwindCSS", "Reddit API", "Framer Motion"],
+          features: [
+            "Track multiple keywords across any subreddit",
+            "Real-time notifications and alerts",
+            "Customizable keyword and subreddit lists",
+            "User-friendly dashboard for monitoring",
+            "Responsive design for all devices",
+          ],
+          challenges: [
+            "Efficiently handling Reddit's API rate limits",
+            "Building a scalable real-time notification system",
+            "Designing an intuitive and clean user interface",
+            "Ensuring privacy and security for user data",
+          ],
+          outcomes: [
+            "Helped users discover relevant Reddit discussions instantly",
+            "Adopted by social media managers and researchers",
+            "Received positive feedback for ease of use and reliability",
+          ],
+          year: "2025",
+          role: "Full Stack Developer & Product Designer",
+          nextProject: undefined,
+          prevProject: undefined,
         },
       }
 
@@ -201,35 +233,7 @@ export default function ProjectDetailPage() {
           </div>
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="mb-16"
-        >
-          {project.gallery && project.gallery.length > 0 ? (
-            <ProjectGallery images={project.gallery} title={project.title} />
-          ) : (
-            <div
-              className={`relative w-full aspect-[16/9] rounded-lg overflow-hidden mb-8 cursor-none
-                ${theme !== "dark" ? "ring-1 ring-zinc-200 shadow-md" : ""}
-              `}
-              onMouseEnter={() => setCursorActive(true)}
-              onMouseLeave={() => setCursorActive(false)}
-            >
-              {theme !== "dark" && (
-                <div className="absolute inset-0 bg-gradient-to-t from-zinc-200/20 to-transparent z-10"></div>
-              )}
-              <Image
-                src={project.image || "/placeholder.svg"}
-                alt={project.title}
-                fill
-                className="object-cover object-top"
-                priority
-              />
-            </div>
-          )}
-
+        <div className="container mx-auto px-4 mb-16">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="md:col-span-2">
               <h2 className="text-2xl font-bold mb-4">Overview</h2>
@@ -326,7 +330,7 @@ export default function ProjectDetailPage() {
               </div>
             </div>
           </div>
-        </motion.div>
+        </div>
 
         <div className="border-t border-zinc-200 dark:border-zinc-800 pt-8">
           <div className="flex flex-col sm:flex-row justify-between items-center">
